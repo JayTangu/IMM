@@ -59,13 +59,15 @@ int main() {
     std::cout<<"請輸入聲音頻率k(Hz)、取樣頻率s、秒數r : ";
     std::cin>>k>>s>>r;
 
-    uint32_t totalSamples1 = static_cast<uint32_t>(s*r);
-    std::vector<int16_t> samples1(totalSamples1);
-    for(uint32_t i = 0; i < totalSamples1; ++i) {
-        double wave_val = std::cos(2.0 * PI * k * i / s);
-        samples1[i] = static_cast<int16_t>(wave_val * 32767.0); //因為我給16 bits 把cos值拉長存入
+    uint32_t simSampleRate = 44100;
+    uint32_t totalSamples2 = static_cast<uint32_t>(simSampleRate*r);
+    uint32_t c = simSampleRate / s;
+    std::vector<int16_t> samples2(totalSamples2);
+    for(uint32_t i = 0; i < totalSamples2; ++i) {
+        double wave_val = std::cos(2.0 * PI * k * (i/c) / s);
+        samples2[i] = static_cast<int16_t>(wave_val * 32767.0); //因為我給16 bits 把cos值拉長存入
     }
-    generateWav("Mywav1.wav",s,samples1);
+    generateWav("Mywav2.wav",simSampleRate,samples2);
 
     return 0;
 }
