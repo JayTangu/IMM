@@ -69,5 +69,10 @@ int main() {
     }
     generateWav("Mywav2.wav",simSampleRate,samples2);
 
+    /*
+    for (int i = 0; i < 8; ++i) {
+        std::cout << "sample[" << i << "] = " << samples2[i] << std::endl;
+    } //test function 每c組同樣數值即正確
+    */
     return 0;
 }
